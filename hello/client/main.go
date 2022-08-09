@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-chassis/go-chassis/v2"
 	"github.com/go-chassis/go-chassis/v2/client/rest"
@@ -37,6 +38,7 @@ func (r *SimpleResource) URLPatterns() []rf.Route {
 //if you use go run main.go instead of binary run, plz export CHASSIS_HOME=/{path}/{to}/server/
 
 func main() {
+	_ = os.Setenv("CHASSIS_CONF_DIR", "/Users/zhe.peng/code/learning/go-chassis-examples/hello/client/conf")
 	chassis.RegisterSchema("rest", &SimpleResource{})
 	if err := chassis.Init(); err != nil {
 		openlog.Fatal("Init failed." + err.Error())
